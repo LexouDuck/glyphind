@@ -1,0 +1,86 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+###
+### Project
+###
+
+/glyphind
+
+# Build
+/obj/
+/bin/
+/dist/
+/build/
+
+# Testing
+/coverage/
+
+# Logs
+/log/
+/logs/
+log.txt
+*.log
+
+# Documentation
+#/doc/
+#/docs/
+
+# Reference material
+/ref/
+
+
+
+###
+### OS-specific files
+###
+
+# Linux
+
+# MacOS
+.DS-Store
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# FAT32
+.Trash-[0-9]*
+.trashes
+.spotlight-v[0-9]*
+
+
+
+###
+### IDE-specific files
+###
+
+*.code-workspace
+# Sublime text
+*.sublime-workspace
+# Visual Studio
+.vs/
+# Visual Studio Code
+.vscode/
+
+
+
+###
+### General files
+###
+
+# local environment variables files
+.env
+.env.dev
+.env.test
+.env.prod
+.env.local
+.env.dev.local
+.env.test.local
+.env.prod.local
+
+
+
+# cccmk
+.cccmk_diff_*/
+.cccmk_update/
