@@ -29,7 +29,7 @@ NAME = glyphind
 # repository folders
 
 #! The directory for header code files (stores `.h` files)
-HDRDIR = ./hdr/
+HDRDIR = ./src/
 #! The directory for source code files (stores `.c` files)
 SRCDIR = ./src/
 #! The directory for dependency library files (stores libs - static:`.a` or dynamic:`.dll`/`.dylib`/`.so`)

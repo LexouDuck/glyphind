@@ -2,6 +2,27 @@
 
 
 
+#! GNU conventional variable: C++ compiler
+CXX = $(CXX_OS)
+#! C compiler platform-specific variable, according to $(OSMODE)
+CXX_OS = $(CXX_OS_$(OSMODE))
+CXX_OS_windows = $(if $(findstring 64,$(CPUMODE)),x86_64-w64-mingw32-g++,i686-w64-mingw32-g++)
+CXX_OS_macos = clang++
+CXX_OS_linux = g++
+CXX_OS_other = cc
+
+
+
+#! GNU conventional variable: C++ compiler options
+CXXFLAGS = \
+
+
+
+#! GNU conventional variable: C++ compiler options (also given to C compiler)
+CPPFLAGS = \
+
+
+
 #! GNU conventional variable: C compiler
 CC = $(CC_OS)
 #! C compiler platform-specific variable, according to $(OSMODE)

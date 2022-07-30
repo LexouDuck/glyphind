@@ -65,10 +65,19 @@ $(OBJSFILE): $(SRCSFILE)
 
 
 #! Compiles object files from source files
+$(OBJPATH)%.o : $(SRCDIR)%.cpp
+	@mkdir -p $(@D)
+	@printf "Compiling file: $@ -> "
+	@$(CXX) -o $@ $(CXXFLAGS) $(CPPFLAGS) -MMD $(INCLUDES) -c $<
+	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
+
+
+
+#! Compiles object files from source files
 $(OBJPATH)%.o : $(SRCDIR)%.c
 	@mkdir -p $(@D)
 	@printf "Compiling file: $@ -> "
-	@$(CC) -o $@ $(CFLAGS) -MMD $(INCLUDES) -c $<
+	@$(CC) -o $@ $(CFLAGS) $(CPPFLAGS) -MMD $(INCLUDES) -c $<
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
 
@@ -78,7 +87,7 @@ $(BINPATH)$(NAME): $(OBJSFILE) $(OBJS)
 	@rm -f $@
 	@mkdir -p $(@D)
 	@printf "Compiling program: $@ -> "
-	@$(CC) -o $@ $(CFLAGS) $(LDFLAGS) $^ $(LDLIBS)
+	@$(CXX) -o $@ $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS)
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 	@$(call bin_copylibs)
 	@$(call bin_symlinks,$(BINPATH),$(NAME),)

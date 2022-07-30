@@ -1,0 +1,14 @@
+-D DEBUG=1
+-Ilocal_folder
+-I./
+-I./lib/libccc/hdr/
+-std=c11
+-Wall
+-Wextra
+-Winline
+-Wpedantic
+-Wstrict-prototypes
+-Wmissing-prototypes
+-Wold-style-definition
+-Wmissing-prototypes
+-Wno-gnu-binary-literal
