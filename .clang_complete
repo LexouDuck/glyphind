@@ -2,7 +2,6 @@
 -Ilocal_folder
 -I./
 -I./lib/libccc/hdr/
--std=c11
 -Wall
 -Wextra
 -Winline

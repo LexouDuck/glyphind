@@ -2,6 +2,11 @@
 
 
 
+#! GNU conventional variable: C/C++ compiler options (given to both C and C++ compiler)
+CPPFLAGS ?= \
+
+
+
 #! GNU conventional variable: C++ compiler
 CXX = $(CXX_OS)
 #! C compiler platform-specific variable, according to $(OSMODE)
@@ -15,11 +20,38 @@ CXX_OS_other = cc
 
 #! GNU conventional variable: C++ compiler options
 CXXFLAGS = \
+	-Wall \
+	-Wextra \
+	-std=c++11 \
+	$(CXXFLAGS_BUILDMODE) \
+	$(CXXFLAGS_OS) \
+	$(CXXFLAGS_EXTRA)
 
+#! C++ compiler options which are specific to the current build mode, according to $(BUILDMODE)
+CXXFLAGS_BUILDMODE = $(CXXFLAGS_BUILDMODE_$(BUILDMODE))
+#! C++ compiler flags which are only present in "debug" build mode
+CXXFLAGS_BUILDMODE_debug = \
+	-g \
+	-ggdb \
+	-D DEBUG=1
+#! C++ compiler flags which are only present in "release" build mode
+CXXFLAGS_BUILDMODE_release = \
+	-O3 \
+	-D RELEASE=1
 
+#! C++ compiler options which are platform-specific, according to $(OSMODE)
+CXXFLAGS_OS = $(CXXFLAGS_OS_$(OSMODE))
+CXXFLAGS_OS_windows = -D__USE_MINGW_ANSI_STDIO=1 # -fno-ms-compatibility
+CXXFLAGS_OS_macos = 
+CXXFLAGS_OS_linux = -fPIC
+CXXFLAGS_OS_other = 
+ifneq ($(findstring clang,$(CXX)),)
+	CXXFLAGS_OS += -Wno-missing-braces
+	CXXFLAGS_OS += -Wno-reserved-user-defined-literal
+endif
 
-#! GNU conventional variable: C++ compiler options (also given to C compiler)
-CPPFLAGS = \
+#! This variable is intentionally empty, to specify additional C++ compiler options from the commandline
+CXXFLAGS_EXTRA ?= \
 
 
 
@@ -86,7 +118,8 @@ CFLAGS_EXTRA += \
 	-Wno-c99-extensions \
 	-Wno-c++11-extensions \
 	-Wno-c++17-extensions \
-	-Wno-return-type-c-linkage
+	-Wno-return-type-c-linkage \
+
 endif
 
 

@@ -1,1 +1,5 @@
 ./src/glyphind.cpp
+./src/util_glyph.cpp
+./src/util_glyph_random.cpp
+./src/util_point.cpp
+./src/util_stroke.cpp
