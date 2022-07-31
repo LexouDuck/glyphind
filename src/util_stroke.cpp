@@ -19,8 +19,8 @@ s_point	stroke::Vector() const
 {
 	return ((s_point)
 	{
-		.x = this->end.x - this->start.x,
-		.y = this->end.y - this->start.y,
+		.x = (t_s8)(this->end.x - this->start.x),
+		.y = (t_s8)(this->end.y - this->start.y),
 	});
 }
 

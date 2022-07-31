@@ -111,7 +111,7 @@ struct glyph
 {
 	t_u8       version;
 	s_point    grid_size;
-	t_s8       stroke_amount;
+	t_u8       stroke_amount;
 	s_stroke*  strokes;
 
 //	methods

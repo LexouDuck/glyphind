@@ -20,14 +20,14 @@ s_glyph	glyph_random::GetRandom() const
 {
 	s_point	grid_size = (s_point)
 	{
-		.x = Random_UInt_Range(glyphind.rng, this->grid_size_min.x, this->grid_size_max.x),
-		.y = Random_UInt_Range(glyphind.rng, this->grid_size_min.y, this->grid_size_max.y),
+		.x = (t_s8)Random_SInt_Range(glyphind.rng, this->grid_size_min.x, this->grid_size_max.x),
+		.y = (t_s8)Random_SInt_Range(glyphind.rng, this->grid_size_min.y, this->grid_size_max.y),
 	};
-	t_s8	amount = Random_UInt_Range(glyphind.rng,
+	t_u8	amount = Random_UInt_Range(glyphind.rng,
 		this->stroke_amount.min,
 		this->stroke_amount.max);
 	s_stroke* strokes = (s_stroke*)Memory_Allocate(amount * sizeof(s_stroke));
-	for (t_s8 i = 0; i < amount; ++i)
+	for (t_u8 i = 0; i < amount; ++i)
 	{
 		t_bool valid = FALSE;
 		while (valid == FALSE)
@@ -35,17 +35,17 @@ s_glyph	glyph_random::GetRandom() const
 			e_stroke_type type = STROKETYPE_LINE;
 			if (this->allow_stroke_curves)
 			{
-				type = (e_stroke_type)Random_UInt_Range(glyphind.rng, 0, ENUMLENGTH_STROKETYPE);
+				type = (e_stroke_type)Random_SInt_Range(glyphind.rng, 0, ENUMLENGTH_STROKETYPE);
 			}
 			s_point p1 = (s_point)
 			{
-				.x = Random_UInt_Range(glyphind.rng, 0, this->grid_size_max.x),
-				.y = Random_UInt_Range(glyphind.rng, 0, this->grid_size_max.y),
+				.x = (t_s8)Random_SInt_Range(glyphind.rng, 0, this->grid_size_max.x),
+				.y = (t_s8)Random_SInt_Range(glyphind.rng, 0, this->grid_size_max.y),
 			};
 			s_point p2 = (s_point)
 			{
-				.x = Random_UInt_Range(glyphind.rng, 0, this->grid_size_max.x),
-				.y = Random_UInt_Range(glyphind.rng, 0, this->grid_size_max.y),
+				.x = (t_s8)Random_SInt_Range(glyphind.rng, 0, this->grid_size_max.x),
+				.y = (t_s8)Random_SInt_Range(glyphind.rng, 0, this->grid_size_max.y),
 			};
 			if (type == STROKETYPE_LINE || !this->allow_stroke_lines)
 			{
@@ -59,7 +59,7 @@ s_glyph	glyph_random::GetRandom() const
 			};
 			if (!strokes[i].IsValid(grid_size))
 				continue;
-			for (t_s8 j = i - 1; j >= 0; --j)
+			for (t_sint j = i - 1; j >= 0; --j)
 			{
 //				if (strokes[i].IsWithin(&strokes[j]))
 				if (stroke::Equals(&strokes[i], &strokes[j]))
